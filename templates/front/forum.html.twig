@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sujets de discussion{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f1f3f6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 900px;
+        margin: 2em auto;
+        padding: 2em;
+        background-color: #ffffff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        transition: transform 0.3s ease-in-out;
+    }
+    .container:hover {
+        transform: translateY(-10px);
+    }
+    .header {
+        text-align: center;
+        margin-bottom: 3em;
+    }
+    .header h1 {
+        font-size: 3em;
+        color: #007bff;
+        font-weight: 600;
+        margin-bottom: 0.5em;
+    }
+    .header p {
+        font-size: 1.2em;
+        color: #777;
+    }
+    .topic {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 1.5em;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        margin-bottom: 1.5em;
+        transition: box-shadow 0.3s ease;
+    }
+    .topic:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    .topic h2 {
+        font-size: 2em;
+        margin-bottom: 1em;
+        color: #333;
+        font-weight: 500;
+    }
+    .topic p {
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #555;
+    }
+</style>
+
+<div class="container">
+    <div class="header">
+        <h1>Sujets de discussion</h1>
+    </div>
+
+    {% for topic in topics %}
+        <div class="topic">
+            <h2>{{ topic.title }}</h2>
+            <p>{{ topic.content|raw }}</p>
+        </div>
+        <a href="{{ path('forum_topic', {'id': topic.id}) }}" class="btn btn-primary">Voir les détails</a>
+    {% endfor %}
+</div>
+{% endblock %}

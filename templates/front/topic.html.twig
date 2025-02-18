@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sujets de discussion{% endblock %}
+
+{% block body %}
+<div>
+    <div>
+        <h2>{{ topic.title }}</h2>
+        <p>{{ topic.content|raw }}</p>
+        {% for comment in topic.comments %}
+            <div>
+                <p>{{ comment.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
